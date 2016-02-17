@@ -28,13 +28,14 @@ class Subscriber
     puts "##{channel}: #{message}"
   end
 
-  def Subscribe
+  # Blocks!
+  def listen
     redis.subscribe(:odd, :even) do |on|
       on.subscribe do |channel|
         puts "Subscribed to ##{channel}."
       end
 
-      on.message do |message|
+      on.message do |channel, message|
         handle_message(channel, message)
       end
     end
