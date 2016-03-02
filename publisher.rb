@@ -1,5 +1,4 @@
 require 'redis'
-require 'twilio-ruby'
 
 redis = Redis.new
 
